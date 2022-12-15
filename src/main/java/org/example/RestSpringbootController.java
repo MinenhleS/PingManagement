@@ -48,7 +48,7 @@ public class RestSpringbootController {
 
     @PostMapping(value = "/decryptKEY")
     private String decryptKEY(@RequestBody String status) {
-        String uri = "http://wmbqaapp1.shoprite.co.za:7080/shoprite/aws/kms/encrypt";
+        String uri = "http://wmbqaapp1.shoprite.co.za:7080/shoprite/aws_key_management/decryptkey";
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.postForObject(uri,status,String.class);
         return result;
