@@ -30,9 +30,25 @@ public class RestSpringbootController {
         return result;
     }
 
-    @PostMapping(value = "/decrypt")
-    private String decrypt(@RequestBody String status) {
+    @PostMapping(value = "/decryptJSON")
+    private String decryptJSON(@RequestBody String status) {
         String uri = "http://wmbqaapp1.shoprite.co.za:7080/shoprite/aws_security_token/gettempcredentials/json1";
+        RestTemplate restTemplate = new RestTemplate();
+        String result = restTemplate.postForObject(uri,status,String.class);
+        return result;
+    }
+
+    @PostMapping(value = "/decryptXML")
+    private String decryptXML(@RequestBody String status) {
+        String uri = "http://wmbqaapp1.shoprite.co.za:7080/shoprite/aws_security_token/gettempcredentials";
+        RestTemplate restTemplate = new RestTemplate();
+        String result = restTemplate.postForObject(uri,status,String.class);
+        return result;
+    }
+
+    @PostMapping(value = "/decryptKEY")
+    private String decryptKEY(@RequestBody String status) {
+        String uri = "http://wmbqaapp1.shoprite.co.za:7080/shoprite/aws/kms/encrypt";
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.postForObject(uri,status,String.class);
         return result;
